@@ -35,7 +35,11 @@ class VideosController: UIViewController {
   // MARK: - Setup
 
   func setup() {
-    view.backgroundColor = UIColor.white
+    if #available(iOS 10.0, *) {
+        view.backgroundColor = UIColor.init(displayP3Red: 148, green: 199, blue: 197, alpha: 1)
+    } else {
+        view.backgroundColor = UIColor.white
+    }
 
     view.addSubview(gridView)
 

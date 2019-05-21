@@ -15,9 +15,6 @@ public class GalleryController: UIViewController, PermissionControllerDelegate {
 
   public let cart = Cart()
 
-  public var isVideoOnly:Bool = false
-    
- public var isPhotoOnly:Bool = false
   // MARK: - Init
 
   public required init() {
@@ -73,16 +70,6 @@ public class GalleryController: UIViewController, PermissionControllerDelegate {
   func makePagesController() -> PagesController? {
     guard Permission.Photos.status == .authorized else {
       return nil
-    }
-
-    if isVideoOnly {
-       let  controllers = [makeVideosController()]
-        let controller = PagesController(controllers: controllers)
-        return controller
-    }else if isPhotoOnly {
-        let  controllers = [makeImagesController()]
-        let controller = PagesController(controllers: controllers)
-        return controller
     }
     
     let useCamera = Permission.Camera.needsPermission && Permission.Camera.status == .authorized
